@@ -1,0 +1,49 @@
+{% extends "layout.twig" %}
+
+{% block title %}Login
+{% endblock %}
+
+{% block body %}
+
+    <div class="columns">
+        <div class="column is-4"></div>
+        <div class="column is-4">
+            <div class="card">
+                <div class="card-content">
+                    <h4 class="title is-4">Create Account</h4>
+                    <hr>
+                    {% for msg in errors %}
+                        <div class="notification is-danger">
+                            {{ msg }}
+                        </div>
+                    {% endfor %}
+                    <form action="" method="post">
+                        <div class="field">
+                            <label class="label">Name</label>
+                            <div class="control">
+                                <input class="input" type="text" name="name">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control">
+                                <input class="input" type="text" name="email">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control">
+                                <input class="input" type="password" name="password">
+                            </div>
+                        </div>
+                        <input type="submit" class="button is-primary" value="Signup">
+                        <a href="/auth/login" class="button is-text">Login</a>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
