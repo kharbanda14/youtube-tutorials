@@ -12,6 +12,7 @@ router.get('/login', function (req, res) {
 
     res.render('auth/login', data);
 });
+
 router.get('/signup', function (req, res) {
     const data = {};
 
@@ -27,13 +28,18 @@ router.post('/signup', async function (req, res, next) {
     const body = req.body;
 
     if (body.email) {
+        /** Find if email exists or not */
         const existing = await user.findOne({ email: body.email }).countDocuments();
         
         if (existing) {
+            /** Set flash message and redirect to signup page */
             req.flash('error', 'User Already Exists');
             return res.redirect('/auth/signup');
         }
 
+        /**
+         * Hash password and save it into database
+         */
         const salt = await bcrypt.genSalt(10);
         body.password = await bcrypt.hash(body.password, salt);
 
@@ -41,6 +47,10 @@ router.post('/signup', async function (req, res, next) {
             const newUser = new user(body);
             await newUser.save();
             
+            /**
+             * Manually authenticating user
+             * comment the following lines and redirect to login page for authenticating.
+             */
             req.logIn(newUser, function () {
                 res.redirect('/home');
             });

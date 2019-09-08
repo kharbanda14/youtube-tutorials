@@ -4,9 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
-const passport = require('./config/passport');
-const mongoose = require("mongoose");
 
+/** Configured Passport */
+const passport = require('./config/passport');
+
+/** Mongoose connection */
+const mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost:27017/auth-example');
 
 var indexRouter = require('./routes/index');
@@ -25,19 +28,30 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+/**
+ * By default the sessions will be removed after restarting the server.
+ * In order to have some sort of persistent session use the compatible
+ * session stores from the following link
+ * https://www.npmjs.com/package/express-session#compatible-session-stores
+ */
 app.use(session({
   secret: 'secret key',
   saveUninitialized: false,
   resave: false
 }))
 
+/** Flash messages */
 app.use(require('connect-flash')());
 
+/** Initialize passport and session */
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+/** Pass configured passport to auth router */
 app.use('/auth', authRouter(passport));
 
 // catch 404 and forward to error handler
