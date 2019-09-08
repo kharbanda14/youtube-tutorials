@@ -22,6 +22,11 @@ router.get('/signup', function (req, res) {
     res.render('auth/signup', data);
 });
 
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/auth/login');
+});
+
 
 router.post('/signup', async function (req, res, next) {
 
