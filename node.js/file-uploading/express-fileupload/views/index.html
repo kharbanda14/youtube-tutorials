@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express File Uploading</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>File Uploading</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <form action="/upload" enctype="multipart/form-data" method="post">
+            <div class="form-group">
+              <label for="">Select File</label>
+              <input type="file" class="form-control" multiple name="images" id="" />
+            </div>
+            <input type="submit" value="Upload" class="btn btn-primary" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
