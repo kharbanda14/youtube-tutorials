@@ -6,7 +6,7 @@ module.exports = {
     res.sendFile(path.join(__dirname, "../views/index.html"));
   },
 
-  upload: async (req, res) => {
+  upload: async (req, res, next) => {
     /**
      * Image Object
      */
@@ -17,13 +17,17 @@ module.exports = {
      */
     let uploaded = [];
 
-    if (Array.isArray(images)) {
-      for (let image of images) {
-        uploaded.push(await fileUploader(image));
+    try {
+      if (Array.isArray(images)) {
+        for (let image of images) {
+          uploaded.push(await fileUploader(image));
+        }
+      } else {
+        uploaded.push(await fileUploader(images));
       }
-    } else {
-      uploaded.push(await fileUploader(images));
+      res.sendFile(path.join(__dirname, "../views/success.html"));
+    } catch (error) {
+      next(error);
     }
-    res.sendFile(path.join(__dirname, "../views/success.html"));
-  }
+  },
 };
