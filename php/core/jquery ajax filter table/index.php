@@ -1,15 +1,6 @@
 <?php 
     /*
     *   JQUERY AJAX FILTER TABLE [UPDATED]
-    *
-    *   THANKS FOR WATCHING AND
-    *   SUBSCRIBE ME FOR MORE VIDEOS LIKE THIS
-    *   https://www.youtube.com/amankharbanda14
-    *
-    *   FOLLOW ME / SUBSCRIBE ME ON FOLLOWING SOCIAL LINKS
-    *   https://goo.gl/8Ep9e6
-    *   https://goo.gl/MXPcdx
-    *   https://goo.gl/V1iugX
     */
 ?>
 
